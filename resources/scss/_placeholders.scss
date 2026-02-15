@@ -1,0 +1,90 @@
+@use 'variables' as *;
+
+/*
+ |-----------------------------------------------
+ |  Input
+ |-----------------------------------------------
+ */
+    %input {
+        font-family: $font-family-1;
+        font-size: .95em;
+        width: 100%;
+        padding: .8em 1.2em;
+        border-radius: .4em;
+        outline: none;
+        background: rgba($color-white, 5%);
+        border: 1px solid transparent;
+        color: $color-white;
+        
+        &:focus {
+            background: rgba($color-white, 10%);
+            border: 1px solid rgba($color-white, 10%);
+        }
+    }
+/*
+ |-----------------------------------------------
+ |  Button
+ |-----------------------------------------------
+ */
+    %button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $font-family-1;
+        font-size: 1em;
+        line-height: 1.4;
+        font-weight: 500;
+        text-decoration: none;
+        gap: .6em;
+        height: fit-content;
+        min-height: 2.8em;
+        width: fit-content;
+        min-width: 5em;
+        padding: .6em;
+        border-radius: .4em;
+        cursor: pointer;
+        
+        i {
+            font-size: .8em;
+        }
+    }
+/*
+ |-----------------------------------------------
+ |  Header
+ |-----------------------------------------------
+ */
+    %header-1 {
+        font-family: $font-family-1;
+        font-size: 1.4em;
+        font-weight: 800;
+        line-height: 1.3;
+        color: $color-white;
+    }
+    %header-2 {
+        font-family: $font-family-1;
+        font-size: 1.3em;
+        font-weight: 700;
+        line-height: 1.3;
+        color: $color-white;
+    }
+    %header-3 {
+        font-family: $font-family-1;
+        font-size: 1.2em;
+        font-weight: 600;
+        line-height: 1.3;
+        color: $color-white;
+    }
+    %header-4 {
+        font-family: $font-family-1;
+        font-size: 1.1em;
+        font-weight: 600;
+        line-height: 1.4;
+        color: $color-white;
+    }
+    %header-5 {
+        font-family: $font-family-1;
+        font-size: 1em;
+        font-weight: 600;
+        line-height: 1.4;
+        color: $color-white;
+    }

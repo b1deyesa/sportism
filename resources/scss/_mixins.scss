@@ -1,0 +1,41 @@
+@use 'variables' as *;
+@use 'placeholders' as *;
+
+/*
+ |-----------------------------------------------
+ |  Button
+ |-----------------------------------------------
+ */
+    @mixin button($type: filled, $icon: false) {
+        @extend %button;
+        
+        @if $type == 'filled' {
+            background: rgba($color-white, 90%);
+            border: 1px solid rgba($color-white, 50%);
+            color: $color-dark;
+            
+            &:hover {
+                background: $color-white;
+                border: 1px solid $color-white;    
+            }            
+        }
+        
+        @if $type == 'outline' {
+            background-color: transparent;
+            border: 1px solid rgba($color-white, 50%);
+            color: $color-white;
+            
+            &:hover {
+                border: 1px solid rgba($color-white, 80%);
+            }
+        }
+        
+        @if $icon {
+            aspect-ratio: 1/1;
+            min-width: fit-content;
+                                
+            i {
+                font-size: 1em;
+            }
+        }
+    }

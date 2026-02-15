@@ -1,0 +1,242 @@
+@use 'variables' as *;
+@use 'placeholders' as *;
+@use 'mixins' as *;
+
+/*
+ |-----------------------------------------------
+ |  Modal
+ |-----------------------------------------------
+ */
+    .modal {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        inset: 0;   
+        z-index: 1000;
+        backdrop-filter: blur(4px);
+        background: rgba($color-black, 90%);
+        
+        .modal__container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 5em;
+            width: 100%;
+            max-width: 30em;
+            padding: 2em;
+            border-radius: .8em;
+            background: lighten($color-dark, 5%);
+            
+            .modal__close {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.1em;
+                aspect-ratio: 1/1;
+                top: 1.5em;
+                right: 1.5em;
+                width: 1.4em;
+                border-radius: 50%;
+                cursor: pointer;
+                background: rgba($color-white, 10%);
+                color: rgba($color-white, 60%);
+                
+                &:hover {
+                    background: rgba($color-white, 20%);
+                    color: $color-white;
+                }
+            }
+        }
+    }
+/*
+ |-----------------------------------------------
+ |  Form
+ |-----------------------------------------------
+ */
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 100%;
+        
+        .form__row {
+            display: flex;
+            gap: inherit;
+        }
+        
+        .form__column {
+            display: flex;
+            flex-direction: column;
+            gap: inherit;
+        }
+        
+        .form__buttons {
+            display: flex;
+            align-items: center;
+            align-self: flex-end;
+            margin-top: auto;
+            gap: .8em;
+            margin: 1em 0 0;
+            
+            .button {
+                min-width: 7em !important;
+                
+                &__close {
+                    @include button(outline);
+                }
+            }
+        }
+    }
+/*
+ |-----------------------------------------------
+ |  Input
+ |-----------------------------------------------
+ */
+    .input {
+        display: flex;
+        flex-direction: column;
+        gap: .4em;
+        width: 100%;
+        
+        .input__label {
+            display: flex;
+            font-size: .85em;
+            gap: .2em;
+            color: rgba($color-white, 80%);
+            
+            .label__required {
+                color: $color-danger;
+            }
+        }
+        
+        .input__error {
+            font-size: .8em;
+            color: $color-danger;
+            width: 100%;
+        }
+        
+        .input__type {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            
+            > input[type="text"],
+            > input[type="date"],
+            > input[type="email"],
+            > input[type="password"] {
+                @extend %input;
+            }
+            
+            > .search {
+                @extend %input;
+                display: flex;
+                align-items: center;
+                gap: .6em;
+                
+                * {
+                    opacity: 60%;
+                }
+                
+                &.active * {
+                    opacity: 100%;
+                }
+                
+                input {
+                    font-family: inherit;
+                    font-size: inherit;
+                    width: 100%;
+                    outline: none;
+                    background: transparent;
+                    border: none;
+                    color: inherit;
+                    
+                    &::-webkit-search-cancel-button {
+                        display: none;
+                    }
+                }
+                
+                .fa-xmark {
+                    display: none;
+                    cursor: pointer;
+                    color: rgba($color-light, 50%);
+                }
+            }
+            
+            > .select {
+                position: relative;
+                
+                select {
+                    @extend %input;
+                    -webkit-appearance: none;
+                }
+                
+                .fa-angle-down {
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    top: 0;
+                    right: 1em;
+                    bottom: 0;
+                }
+            }
+            
+            > .checkbox {
+                display: flex;
+                flex-direction: column;
+                gap: .5em;
+                
+                .checkbox__item {
+                    display: flex;
+                    align-items: center;
+                    font-size: 1em;
+                    gap: .4em;
+                    cursor: pointer;
+                    color: rgba($color-white, 80%);
+                }
+            }
+        }
+    }
+/*
+ |-----------------------------------------------
+ |  Button
+ |-----------------------------------------------
+ */
+    .button {
+        @include button();
+    } 
+/*
+ |-----------------------------------------------
+ |  Splide
+ |-----------------------------------------------
+ */
+    .splide {
+        padding: 0 4em;
+        
+        .splide__arrow {
+            top: 50%;
+        }
+        
+        .splide__arrow--prev {
+            left: 0;
+        }
+        
+        .splide__arrow--next {
+            right: 0;
+        }        
+    }
+/*
+ |-----------------------------------------------
+ |  Empty
+ |-----------------------------------------------
+ */
+    .empty {
+        display: flex;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        color: rgba($color-white, 20%);
+    }

@@ -1,0 +1,1389 @@
+@use 'variables' as *;
+@use 'placeholders' as *;
+@use 'mixins' as *;
+
+body {
+    font-family: $font-family-1;
+    background: $color-black;
+    color: $color-light;
+}
+
+/*
+ |-----------------------------------------------
+ |  Guest
+ |-----------------------------------------------
+ */
+    body.guest {
+        
+        .guest__navigation {
+            position: sticky;
+            display: flex;
+            justify-content: center;
+            top: 0;
+            padding: 2em;
+            z-index: 100;
+            background: darken($color-dark, 2%);
+            
+            .navigation__container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 1200px;
+                
+                .navigation__banner {
+                    height: 2em;
+                }
+                
+                .navigation__search {
+                    max-width: 30em;
+                    
+                    .search {
+                        border-radius: 999px;
+                    }
+                }
+                    
+                .navigation__menu {
+                    display: flex;
+                    align-items: center;
+                    gap: 2em;
+                    
+                    .menu__item {
+                        text-decoration: none;
+                        font-weight: 500;
+                        color: $color-white;
+                        
+                        &:hover {
+                            color: rgba($color-white, 90%);
+                        }
+                        
+                        &.active {
+                            color: $color-white;
+                        }
+                    }
+                    
+                    .menu__item__login__trigger {
+                        @include button(outline);
+                    }
+                    
+                    .menu__item__profile {
+                        position: relative;
+                        display: flex;
+                        
+                        .profile__avatar {
+                            aspect-ratio: 1/1;
+                            object-fit: cover;
+                            height: fit-content;
+                            width: 2.8em;
+                            cursor: pointer;
+                            border-radius: 50%;
+                        }
+                        
+                        .profile__list {
+                            position: absolute;
+                            display: flex;
+                            flex-direction: column;
+                            top: calc(100% + 1em);
+                            right: 0;
+                            padding: .5em;
+                            overflow: hidden;
+                            border-radius: .6em;
+                            background: lighten($color-dark, 10%);
+                            
+                            .list__item {
+                                display: flex;
+                                text-decoration: none;
+                                width: 10em;
+                                padding: .8em 1em;
+                                border-radius: .4em;
+                                cursor: pointer;
+                                color: $color-white;
+                                
+                                &:hover {
+                                    background: lighten($color-dark, 15%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        .guest__layout {
+            
+            &.home {
+                display: flex;    
+                flex-direction: column;
+                gap: 4em;
+                padding: 5em 2em;
+                
+                section.banner {
+                    display: flex;
+                    justify-content: center;
+                    
+                    .banner__container {
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        gap: .5em;
+                        min-height: 15em;
+                        width: 100%;
+                        max-width: 1000px;
+                        padding: 2em 4em;
+                        overflow: hidden;
+                        border-radius: .8em;
+                        
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            inset: 0;
+                            background: linear-gradient(90deg, rgba($color-black, 60%), rgba($color-black, 20%));
+                            z-index: -1;
+                        }
+                        
+                        .banner__background {
+                            position: absolute;
+                            object-fit: cover;
+                            inset: 0;
+                            height: 100%;
+                            width: 100%;
+                            z-index: -2;
+                        }
+                        
+                        .banner__title {
+                            font-size: 1.5em;
+                            color: rgba($color-white, 80%);
+                        }
+                        
+                        .banner__subtitle {
+                            font-size: 2em;
+                            font-weight: 700;
+                            color: $color-white;
+                        }
+                    }
+                }
+                
+                section.event {
+                    display: flex;
+                    justify-content: center;
+                    
+                    .event__container {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2em;
+                        width: 100%;
+                        max-width: 1000px;
+                        
+                        .event__header {
+                            display: flex;
+                            align-items: center;
+                            align-self: center;
+                            gap: 1em;
+                            
+                            .header__title {
+                                @extend %header-2;
+                            }
+                            
+                            .header__button {
+                                @include button(outline);
+                                min-height: fit-content;
+                                padding: .4em 1em;
+                            }
+                        }
+                        
+                        #event__splide {
+                            
+                            .splide__slide {
+                                position: relative;
+                                display: flex;
+                                flex-direction: column;
+                                overflow: hidden;
+                                border-radius: .8em;
+                                
+                                .item__status {
+                                    position: absolute;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    font-size: .8em;
+                                    text-transform: capitalize;
+                                    top: 1em;
+                                    right: 1em;
+                                    width: fit-content;
+                                    padding: .5em 1em;
+                                    border-radius: 999em;
+                                    background: rgba($color-black, 50%);
+                                    color: rgba($color-white, 80%);
+                                }
+                                
+                                .item__cover {
+                                    aspect-ratio: 4/3;
+                                    object-fit: cover;
+                                    width: 100%;
+                                }
+                                
+                                .item__bottom {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 1em;
+                                    height: 100%;
+                                    padding: 1.5em;
+                                    background: $color-dark;
+                                    
+                                    .item__title {
+                                        font-size: 1.1em;
+                                        font-weight: 700;
+                                        line-height: 1.5;
+                                        text-align: center;
+                                        color: $color-white;
+                                    }
+                                    
+                                    .item__date {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        gap: .5em;
+                                        margin: 0 0 .5em;
+                                        
+                                        .date__start {
+                                            font-size: .9em;
+                                            color: rgba($color-white, 50%);
+                                        }
+                                        
+                                        .date__separator {
+                                            font-size: 1.2em;
+                                            color: rgba($color-white, 20%);
+                                        }
+                                        
+                                        .date__end {
+                                            font-size: .9em;
+                                            color: rgba($color-white, 50%);
+                                        }
+                                    }
+                                    
+                                    .item__buttons {
+                                        display: flex;
+                                        gap: .8em;
+                                        margin: auto 0 0;
+                                        
+                                        .item__button__detail {
+                                            @include button(outline, $icon: true);
+                                        }
+                                        
+                                        div:has(.item__button__regist__trigger) {
+                                            width: 100%;
+                                            
+                                            .item__button__regist__trigger {
+                                                @include button();
+                                                width: 100%;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        .guest__footer {
+            display: flex;
+            justify-content: center;
+            padding: 5em 2em;
+            background: darken($color-dark, 2%);
+            
+            .footer__container {
+                display: grid;
+                grid-auto-flow: column;
+                grid-auto-columns: 1fr;
+                gap: 5em;
+                width: 100%;
+                max-width: 1200px;
+                
+                .footer__banner {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1em;
+                    
+                    .banner__image {
+                        height: 5em;
+                        width: fit-content;
+                    }
+                    
+                    .banner__tagline {
+                        font-size: 1.4em;
+                        line-height: 1.4;
+                        color: $color-white;
+                    }
+                }
+                
+                .footer__term {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1em;
+                    
+                    .term__link {
+                        display: flex;
+                        align-items: center;
+                        gap: .5em;
+                        
+                        a {
+                            text-decoration: none;
+                            color: $color-white;
+                            
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                    
+                    .term__description {
+                        line-height: 1.4;
+                        color:  $color-light;
+                    }
+                }
+                
+                .footer__media {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2em;
+                    
+                    .media__title {
+                        font-size: 1.2em;
+                        font-weight: 600;
+                        color: $color-white;
+                    }
+                    
+                    .media__list {
+                        display: flex;
+                        gap: .8em;
+                        
+                        .list__item {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            aspect-ratio: 1/1;
+                            text-decoration: none;
+                            width: 3em;
+                            border-radius: 50%;
+                            background: rgba($color-white, 80%);
+                            color: $color-dark;
+                            
+                            &:hover {
+                                background: $color-white;
+                            }
+                            
+                            i {
+                                font-size: 1.3em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        .guest__copyright {
+            display: flex;
+            justify-content: center;
+            padding: 1.5em 2em;
+            background: $color-dark;
+            
+            .copyright__container {
+                display: flex;
+                align-items: center;
+                gap: .6em;
+                width: 100%;
+                max-width: 1200px;
+                
+                .copyright__text {
+                    font-size: .8em;
+                    color: $color-light;
+                }
+                
+                .copyright__separator {
+                    color: rgba($color-white, 20%);
+                }
+            }
+        }
+        
+        > .modal {
+            
+            .modal__container:has(.auth) {
+                max-width: 54em;
+                padding: 0;
+                border-radius: .8em;
+                overflow: hidden;
+                
+                .auth {
+                    display: flex;
+                    flex-direction: row;
+                    
+                    .auth__banner {
+                        position: relative;
+                        display: flex;
+                        min-width: 25em;
+                        max-width: 25em;
+                        
+                        .banner__image {
+                            position: absolute;
+                            object-fit: cover;
+                            inset: 0;
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+                    
+                    .auth__right {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5em;
+                        width: 100%;
+                        padding: 2.5em;
+                        
+                        .auth__header {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1.5em;
+                            
+                            .header__logo {
+                                height: 4em;
+                                width: fit-content;
+                            }
+                            
+                            .header__title {
+                                @extend %header-1;
+                            }
+                        }
+                        
+                        .auth__form {
+                            
+                            .form__action {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                margin: .2em 0;
+                                
+                                .action__forget {
+                                    text-decoration: none;
+                                    white-space: nowrap;
+                                    color: rgba($color-white, 80%);
+                                    
+                                    &:hover {
+                                        color: $color-white;
+                                    }
+                                }
+                            }
+                            
+                            .form__buttons {
+                                display: flex;
+                                flex-direction: column;
+                                width: 100%;
+                                gap: 1.2em;
+                                margin: 1em 0 0;
+                                
+                                .button__submit {
+                                    width: 100%;
+                                }
+                                
+                                .button__redirect__trigger {
+                                    display: block;
+                                    font-size: 1em;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    color: rgba($color-white, 80%);
+                                    cursor: pointer;
+                                    
+                                    &:hover {
+                                        color: $color-white;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .modal__container:has(.logout) {
+                
+                .logout {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    min-height: 8em;
+                }
+            }
+        }
+    }
+/*
+ |-----------------------------------------------
+ |  Superadmin
+ |-----------------------------------------------
+ */
+    body.superadmin {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        
+        .superadmin__navigation {
+            position: sticky;
+            display: flex;
+            justify-content: center;
+            top: 0;
+            padding: 2em 1.5em;
+            z-index: 100;
+            background: darken($color-dark, 2%);
+            
+            .navigation__container {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5em;
+                width: 15em;
+                
+                .navigation__banner {
+                    height: 5em;
+                    width: fit-content;
+                }
+                
+                .navigation__menu {
+                    display: flex;
+                    flex-direction: column;
+                    
+                    .menu__item {
+                        text-decoration: none;
+                        font-weight: 500;
+                        padding: .8em;
+                        border-radius: .4em;
+                        color: $color-light;
+                        
+                        &:hover {
+                            background: rgba($color-white, 2%);
+                            color: rgba($color-white, 60%);
+                        }
+                        
+                        &.active {
+                            background: rgba($color-white, 5%);
+                            color: $color-white;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .superadmin__layout {
+            display: flex;
+            flex-direction: column;
+            gap: 3em;
+            width: 100%;
+            padding: 3em;
+            
+            &.event {
+                
+                &.index {
+                    
+                    .event__header {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.2em;
+                        height: 2em;
+                        
+                        .header__title {
+                            @extend %header-1;
+                        }
+                        
+                        .header__separator {
+                            width: 1px !important;
+                            margin: 0;
+                            height: 100%;
+                            border: .5px solid rgba($color-white, 15%);
+                        }
+                        
+                        .event__create__trigger {
+                            @include button(outline);
+                        }
+                    }
+                    
+                    .event__read {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1em;
+                        height: 100%;
+                        
+                        .event__list {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1em;
+                            padding: 1em;
+                            border-radius: .8em;
+                            background: rgba($color-white, 2%);
+                            border: 1px solid rgba($color-white, 10%);
+                            
+                            .list__item {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding: 1em;
+                                border-radius: .6em;
+                                background: darken($color-dark, 2%);
+                                
+                                .item__left {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 1em;
+                                    
+                                    .item__cover {
+                                        aspect-ratio: 1/1;
+                                        object-fit: cover;
+                                        width: 4em;
+                                        border-radius: .4em;
+                                    }
+                                    
+                                    .item__text {
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: .8em;
+                                        
+                                        .item__title {
+                                            font-size: 1.1em;
+                                            font-weight: bold;
+                                            color: rgba($color-white, 90%);
+                                        }
+                                        
+                                        .item__bottom {
+                                            display: flex;
+                                            align-items: center;
+                                            gap: .6em;
+                                            
+                                            .item__status {
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                                font-size: .7em;
+                                                text-transform: capitalize;
+                                                width: fit-content;
+                                                padding: .5em 1em;
+                                                border-radius: 999em;
+                                                background: rgba($color-white, 5%);
+                                                color: rgba($color-white, 80%);
+                                            }
+                                            
+                                            .item__date {
+                                                font-size: .9em;
+                                                color: rgba($color-light, 50%);
+                                            }
+                                        } 
+                                    }
+                                }
+                                
+                                .item__right {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: .5em;
+                                    
+                                    .item__handle {
+                                        font-size: 1.5em;
+                                        cursor: pointer;
+                                    }
+                                    
+                                    .event__edit__trigger {
+                                        @include button(outline, $icon: true);
+                                        min-height: 2.2em;
+                                        padding: .5em;
+                                    }
+                                    
+                                    .event__delete__trigger {
+                                        @include button(outline, $icon: true);
+                                        min-height: 2.2em;
+                                        padding: .5em;
+                                    }
+                                    
+                                    .event__visit {
+                                        @include button();
+                                        font-size: .9em;
+                                        min-height: 2.2em;
+                                        padding: .4em .8em;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                &.show {
+                    
+                    .event__header {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.2em;
+                        height: 2em;
+                        
+                        .header__title {
+                            @extend %header-1;
+                        }
+                        
+                        .header__separator {
+                            width: 1px !important;
+                            margin: 0;
+                            height: 100%;
+                            border: .5px solid rgba($color-white, 15%);
+                        }
+                        
+                        .event__create__trigger {
+                            @include button(outline);
+                        }
+                    }
+                    
+                    .event__category {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5em;
+                        height: 100%;
+                        
+                        .category__header {
+                            display: flex;
+                            align-items: center;
+                            gap: 1em;
+                            
+                            .header__title {
+                                @extend %header-3;
+                            }
+                            
+                            .category__create__trigger {
+                                @include button(outline, $icon: true);
+                            }
+                        }
+                        
+                        .category__read {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1em;
+                            height: 100%;
+                            
+                            .category__list {
+                                display: flex;
+                                align-items: center;
+                                gap: 1em;
+                                
+                                .list__item {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    min-height: 2em;
+                                    width: 10em;
+                                    padding: .8em 1em;
+                                    cursor: pointer;
+                                    border-radius: .4em;
+                                    background: rgba($color-white, 2%);
+                                    border: 1px solid rgba($color-white, 10%);
+                                    color: $color-light;
+                                    
+                                    &.active {
+                                        background: rgba($color-white, 10%);
+                                        border: 1px solid rgba($color-white, 20%);
+                                        color: rgba($color-white, 80%);
+                                    }
+                                }
+                            }
+                            
+                            .category__team {
+                                display: flex;
+                                gap: 2em;
+                                height: 100%;
+                                
+                                .team__list {
+                                    display: grid;
+                                    grid-template-columns: repeat(5, 1fr);
+                                    gap: 1em;
+                                    height: 100%;
+                                    width: 100%;
+                                    min-width: 50em;
+                                    padding: 1em;
+                                    border-radius: .8em;
+                                    background: rgba($color-white, 2%);
+                                    border: 1px solid rgba($color-white, 10%);
+        
+                                    .list__item {
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        justify-content: center;
+                                        text-decoration: none;
+                                        gap: 1em;
+                                        height: 9em;
+                                        width: auto;
+                                        min-width: 0; 
+                                        padding: .6em;
+                                        cursor: pointer;
+                                        border-radius: .6em;
+                                        border: 1px solid transparent;
+                                        background: darken($color-dark, 2%);
+                                        
+                                        &.active {
+                                            background: rgba($color-white, 10%);
+                                            border: 1px solid rgba($color-white, 20%);
+                                            color: rgba($color-white, 80%);
+                                        }
+                                        
+                                        .item__logo {
+                                            width: fit-content;
+                                            max-width: 100%;
+                                            max-height: 4em;
+                                        }
+                                        
+                                        .item__title {
+                                            font-size: 1em;
+                                            line-height: 1.4;
+                                            font-weight: 500;
+                                            text-align: center;
+                                            text-overflow: ellipsis;
+                                            white-space: nowrap;
+                                            max-width: 6em;
+                                            overflow: hidden;
+                                            color: rgba($color-white, 80%);
+                                        }
+                                    }
+                                    
+                                    .team__create__trigger {
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        justify-content: center;
+                                        gap: 1em;
+                                        min-height: 9em;
+                                        width: 100%;
+                                        cursor: pointer;
+                                        border-radius: .4em;
+                                        border: 1px dashed rgba($color-white, 10%);
+                                        background: rgba($color-white, 2%);
+                                        
+                                        i {
+                                            font-size: 2em;
+                                        }
+                                    }
+                                }
+                                
+                                .team__separator {
+                                    margin: 0;
+                                    border: 1px solid rgba($color-white, 5%);
+                                }
+                                
+                                .team__info {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 1.5em;
+                                    width: 100%;
+                                    
+                                    .info__title {
+                                        @extend %header-3;
+                                    }
+                                    
+                                    .info__player {
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: 1em;
+                                        
+                                        .player__header {
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 1em;
+                                            
+                                            .header__title {
+                                                @extend %header-4;
+                                            }
+                                            
+                                            .player__create__trigger {
+                                                @include button(outline, $icon: true);
+                                                min-height: fit-content;
+                                                padding: .5em;
+                                            }
+                                        }
+                                        
+                                        .player__list {
+                                            display: grid;
+                                            grid-template-columns: repeat(4, 1fr);
+                                            gap: 1em;
+                                            
+                                            .list__item {
+                                                display: flex;
+                                                flex-direction: column;
+                                                align-items: center;
+                                                gap: .5em;
+                                                
+                                                .item__avatar {
+                                                    aspect-ratio: 1/1;
+                                                    height: 3em;
+                                                    width: fit-content;
+                                                    border-radius: 50%;
+                                                }
+                                                
+                                                .item__title {
+                                                    font-size: .8em;
+                                                    text-align: center;
+                                                    text-overflow: ellipsis;
+                                                    white-space: nowrap;
+                                                    max-width: 5em;
+                                                    overflow: hidden;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            &.club {
+                
+                &.index {
+                    
+                    .club__header {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.2em;
+                        height: 2em;
+                        
+                        .header__title {
+                            @extend %header-1;
+                        }
+                        
+                        .header__separator {
+                            width: 1px !important;
+                            margin: 0;
+                            height: 100%;
+                            border: .5px solid rgba($color-white, 15%);
+                        }
+                        
+                        .club__create__trigger {
+                            @include button(outline);
+                        }
+                    }
+                    
+                    .club__read {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5em;
+                        height: 100%;
+                        
+                        .club__list {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1em;
+                            padding: 1em;
+                            border-radius: .8em;
+                            background: rgba($color-white, 2%);
+                            border: 1px solid rgba($color-white, 10%);
+                            
+                            > span {
+                                display: flex;
+                                flex-direction: column;
+                                
+                                > .list__item {
+                                    position: relative;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    text-decoration: none;
+                                    gap: 1em;
+                                    height: 5em;
+                                    padding: .5em 1em;
+                                    overflow: hidden;
+                                    cursor: pointer;
+                                    z-index: 1;
+                                    border-radius: .6em;
+                                    background: darken($color-dark, 2%);
+                                    
+                                    .item__background {
+                                        position: absolute;
+                                        top: 0;
+                                        bottom: 0;
+                                        left: 0;
+                                        height: 100%;
+                                        z-index: 0;
+                                        transform: scale(2);
+                                        opacity: 8%;
+                                    }
+                                    
+                                    .item__left {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 1em;
+                                        
+                                        .item__logo {
+                                            max-height: 4em;
+                                            max-width: 4em;
+                                        }
+                                        
+                                        .item__title {
+                                            font-size: 1em;
+                                            font-weight: 600;
+                                            text-align: center;
+                                            color: rgba($color-white, 90%);
+                                        }
+                                    }
+                                    
+                                    .item__right {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: .5em;
+                                        
+                                        .item__view {
+                                            @include button();
+                                            font-size: .9em;
+                                            min-height: 2.2em;
+                                            padding: .4em .8em;
+                                        }
+                                        
+                                        .team__create__trigger {
+                                            @include button(outline);
+                                            font-size: .9em;
+                                            min-height: 2.2em;
+                                            padding: .4em .8em;
+                                        }
+                                    }
+                                }
+                                
+                                .team__list {
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin: -.5em 0 0;
+                                    
+                                    .list__item {
+                                        position: relative;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-between;
+                                        text-decoration: none;
+                                        gap: 1em;
+                                        height: 4em;
+                                        padding: .5em .8em .5em 2em;
+                                        overflow: hidden;
+                                        background: darken($color-dark, 6%);
+                                        border: 1px solid rgba($color-white, 5%);
+                                        border-top: none;
+                                        
+                                        &:first-child {
+                                            padding-top: 1em;
+                                        }
+                                        
+                                        &:last-child {
+                                            border-bottom-right-radius: .6em;
+                                            border-bottom-left-radius: .6em;
+                                        }
+                                        
+                                        .item__title {
+                                            font-size: 1em;
+                                            font-weight: 500;
+                                            text-align: center;
+                                            color: rgba($color-white, 90%);
+                                        }
+                                        
+                                        .item__visit {
+                                            @include button(outline);
+                                            font-size: .9em;
+                                            min-height: 2.2em;
+                                            padding: .4em .8em;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            &.team {
+                
+                &.show {
+                    
+                    .team__header {
+                        display: flex;
+                        gap: 2em;
+                        
+                        .header__logo {
+                            width: 5em;
+                            height: fit-content;
+                        }
+                        
+                        .header__info {
+                            display: flex;
+                            flex-direction: column;
+                            gap: .5em;
+                            
+                            .info__title {
+                                @extend %header-1;
+                                text-transform: uppercase;
+                            }
+                            
+                            .info__subtitle {
+                                @extend %header-3;
+                                color: $color-light;
+                            }
+                        }
+                    }
+                    
+                    .team__content {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1em;
+                        height: 100%;
+                        
+                        .tab {
+                            display: flex;
+                            align-items: center;
+                            gap: 1em;
+                            
+                            .tab__item {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                min-height: 2em;
+                                width: 10em;
+                                padding: .8em 1em;
+                                cursor: pointer;
+                                border-radius: .4em;
+                                background: rgba($color-white, 2%);
+                                border: 1px solid rgba($color-white, 10%);
+                                color: $color-light;
+                                
+                                &.active {
+                                    background: rgba($color-white, 10%);
+                                    border: 1px solid rgba($color-white, 20%);
+                                    color: rgba($color-white, 80%);
+                                }
+                            }
+                        }
+                        
+                        .panel {
+                            height: 100%;
+                            padding: 1em;
+                            border-radius: .8em;
+                            background: rgba($color-white, 2%);
+                            border: 1px solid rgba($color-white, 10%);
+                            
+                            .panel__overview {
+                                display: grid;
+                                grid-template-columns: repeat(3, 1fr);
+                                gap: 1em;
+                                
+                                .overview__form {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 1.5em;
+                                    padding: 1.5em 1.5em 1.8em;
+                                    border-radius: .6em;
+                                    background: rgba($color-white, 2%);
+                                    border: 1px solid rgba($color-white, 10%);    
+                                    
+                                    .form__title {
+                                        @extend %header-5;
+                                    }
+                                    
+                                    .form__list {
+                                        display: grid;
+                                        grid-template-columns: repeat(4, 1fr);
+                                        gap: 1em;
+                                        
+                                        .list__item {
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            gap: .8em;
+                                            
+                                            .item__score {
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                                font-size: .8em;
+                                                width: 4.5em;
+                                                padding: .4em;
+                                                border-radius: 999px;
+                                                background: rgba($color-white, 20%);
+                                                color: rgba($color-white, 90%);
+                                            }
+                                            
+                                            .item__logo {
+                                                object-fit: contain;
+                                                max-width: 100%;
+                                                height: 2.5em;
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                .overview__next {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-between;
+                                    gap: 1.5em;
+                                    padding: 1.5em 1.5em;
+                                    border-radius: .6em;
+                                    background: rgba($color-white, 2%);
+                                    border: 1px solid rgba($color-white, 10%);
+                                    
+                                    .next__header {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        
+                                        .header__title {
+                                            @extend %header-5;
+                                        }
+                                        
+                                        .header__event {
+                                            line-height: 1.4;   
+                                        }
+                                    }
+                                    
+                                    .next__team {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-between;
+                                        
+                                        .team__item {
+                                            display: flex;
+                                            flex-direction: column;
+                                            gap: 1em;
+                                            
+                                            .item__logo {
+                                                object-fit: contain;
+                                                max-width: 100%;
+                                                height: 2.7em;
+                                            }
+                                            
+                                            .item__title {
+                                                font-size: .9em;
+                                                text-align: center;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
+                                                max-width: 8em;
+                                                overflow: hidden;
+                                                color: rgba($color-white, 80%);
+                                            }
+                                        }
+                                        
+                                        .team__schedule {
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            gap: .5em;
+                                            
+                                            .schedule__time {
+                                                font-size: 1.4em;
+                                                font-weight: 500;
+                                                color: rgba($color-white, 80%);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            .panel__player {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 1em;
+                                padding: 1em;
+
+                                .player__read {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 1em;
+                                    
+                                    .player__header {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-between;
+                                        
+                                        .header__title {
+                                            @extend %header-4
+                                        }
+                                        
+                                        .header__action {
+                                            display: flex;
+                                            align-items: center;
+                                            gap: .8em;
+                                            
+                                            .player__create__trigger {
+                                                @include button();
+                                                white-space: nowrap;
+                                            }
+                                        }
+                                    }
+                                    
+                                    .player__list {
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: .5em;
+                                        
+                                        .list__item {
+                                            display: flex;
+                                            justify-content: space-between;
+                                            padding: 1em;
+                                            border-radius: .6em;
+                                            background: rgba($color-white, 2%);
+                                            border: 1px solid rgba($color-white, 10%);
+                                            
+                                            .item__left {
+                                                display: flex;
+                                                align-items: center;
+                                                gap: 1em;
+                                                
+                                                .item__avatar {
+                                                    aspect-ratio: 1/1;
+                                                    width: 3em;
+                                                    border-radius: 50%;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                .team__read {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5em;
+                    height: 100%;
+                    
+                    .team__list {
+                        display: grid;
+                        grid-template-columns: repeat(5, 1fr);
+                        gap: 1em;
+                        height: 100%;
+                        padding: 1em;
+                        border-radius: .8em;
+                        border: 1px solid rgba($color-white, 15%);
+                        
+                        .list__item {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            text-decoration: none;
+                            gap: 1em;
+                            height: fit-content;
+                            padding: 1em;
+                            border-radius: .6em;
+                            background: darken($color-dark, 2%);
+                            
+                            .item__logo {
+                                width: fit-content;
+                                max-width: 100%;
+                                max-height: 8em;
+                            }
+                            
+                            .item__title {
+                                font-size: 1em;
+                                font-weight: 500;
+                                text-align: center;
+                                color: rgba($color-white, 80%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
