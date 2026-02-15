@@ -1,6 +1,6 @@
 <x-form wire:submit="save">
     <x-input label="Event Name" type="text" wire="name" />
-    <x-input label="Status" type="text" wire="status" />
+    {{-- <x-input label="Status" type="text" wire="status" /> --}}
     <div class="form__row">
         <x-input label="Date Start" type="date" wire="date_start" />
         <x-input label="Date End" type="date" wire="date_end" />
