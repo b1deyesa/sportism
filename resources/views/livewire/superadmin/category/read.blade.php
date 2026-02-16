@@ -15,14 +15,14 @@
             @if($this->category)
                 @foreach ($this->category->teams as $team)
                     <span class="list__item{{ $selected_team == $team->id ? ' active' : '' }}" wire:click="selectTeam({{ $team->id }})">
-                        <img src="{{ asset('assets/img/default-logo.png') }}" alt="Team Logo" class="item__logo">
+                        <img src="{{ asset($team->logo ? 'storage/'. $team->logo : 'assets/img/default-logo.png') }}" alt="Team Logo" class="item__logo">
                         <h3 class="item__title">{{ $team->name }}</h3>
                     </span>
                 @endforeach
                 <x-modal class="team__create" :close="false">
                     <x-slot:trigger><i class="fa-solid fa-plus"></i></x-slot:trigger>
                     <x-form class="team__form" wire:submit="saveTeam">
-                        <x-input label="Team Name" type="text" wire="name" />
+                        <x-input label="Team Name" type="select" wire="team_id" placeholder="Select" :options="$teams" />
                         <div class="form__buttons">
                             <x-button class="button__close" x-on:click="open = false">Close</x-button>
                             <x-button type="submit">Save</x-button>
@@ -42,7 +42,7 @@
                 <div class="info__player">
                     <div class="player__header">
                         <h2 class="header__title">Player</h2>
-                        <x-modal class="player__create" :close="false">
+                        {{-- <x-modal class="player__create" :close="false">
                             <x-slot:trigger><i class="fa-solid fa-plus"></i></x-slot:trigger>
                             <x-form class="player__form" wire:submit="savePlayer">
                                 <x-input label="Player Name" type="text" wire="name" />
@@ -51,13 +51,13 @@
                                     <x-button type="submit">Save</x-button>
                                 </div>
                             </x-form>
-                        </x-modal>
+                        </x-modal> --}}
                     </div>
                     @if($this->team)
                         <div class="player__list">
                             @foreach ($this->team->players as $player)
                                 <span class="list__item">
-                                    <img src="{{ asset('assets/img/default-avatar.png') }}" alt="Player Avatar" class="item__avatar">
+                                    <img src="{{ asset($player->avatar ? 'storage/'. $player->avatar : 'assets/img/default-avatar.png') }}" alt="Player Avatar" class="item__avatar">
                                     <h3 class="item__title">{{ $player->name }}</h3>
                                 </span>
                             @endforeach

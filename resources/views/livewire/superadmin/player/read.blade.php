@@ -17,7 +17,7 @@
         @foreach ($players as $player)
             <div class="list__item">
                 <div class="item__left">
-                    <img src="{{ asset('assets/img/default-avatar.png') }}" alt="Player Avatar" class="item__avatar">
+                    <img src="{{ asset($player->avatar ? 'storage/'. $player->avatar : 'assets/img/default-avatar.png') }}" alt="Player Avatar" class="item__avatar">
                     <h3 class="item__title">{{ $player->name }}</h3>
                 </div>
             </div>

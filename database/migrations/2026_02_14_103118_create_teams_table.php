@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('club_id')->constrained('clubs')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('logo')->nullable();
             $table->string('province')->nullable();
             $table->string('city')->nullable();
             $table->timestamps();

@@ -6,11 +6,15 @@ use App\Models\Club;
 use App\Models\Team;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+    use WithFileUploads;
+    
     public Club $club;
     public $name;
+    public $logo;
     
     public function save()
     {
@@ -22,11 +26,13 @@ class Create extends Component
             $this->addError('name', 'Team already exists!');
             return;
         }
+        $logo = $this->logo ? $this->logo->store('team', 'public') : null;
         
         Team::create([
             'club_id' => $this->club->id,
             'name' => $this->name,
-            'slug' => Str::slug($this->name)
+            'slug' => Str::slug($this->name),
+            'logo' => $logo
         ]);
         
         return redirect()->route('superadmin.club.index')->with('success', 'Success Update');

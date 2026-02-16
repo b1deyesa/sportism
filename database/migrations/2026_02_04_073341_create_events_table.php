@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('entered_by')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('cover')->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['open', 'on going', 'coming soon', 'end'])->default('coming soon');
             $table->date('date_start');

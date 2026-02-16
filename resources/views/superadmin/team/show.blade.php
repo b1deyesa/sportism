@@ -2,7 +2,7 @@
     
     {{-- Header --}}
     <div class="team__header">
-        <img src="{{ asset('assets/img/default-logo.png') }}" alt="Team Logo" class="header__logo">
+        <img src="{{ asset($team->logo ? 'storage/'. $team->logo : 'assets/img/default-logo.png') }}" alt="Team Logo" class="header__logo">
         <div class="header__info">
             <h1 class="info__title">{{ $team->name }}</h1>
             <h2 class="info__subtitle">{{ $team->club->name }}</h2>
@@ -24,7 +24,7 @@
         <div class="panel">
             
             {{-- Overview --}}
-            <div class="panel__overview" x-show="tab==='overview'">
+            <div class="panel__overview" x-show="tab==='overview'" x-cloak>
                 <div class="overview__form">
                     <h3 class="form__title">Team Form</h3>
                     <div class="form__list">
@@ -69,7 +69,7 @@
             </div>
             
             {{-- Player --}}
-            <div class="panel__player" x-show="tab==='player'">
+            <div class="panel__player" x-show="tab==='player'" x-cloak>
                 @livewire('superadmin.player.read', compact('team'))
             </div>
             

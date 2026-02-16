@@ -64,6 +64,73 @@
                     @endforeach
                 </div>
                 @break
+            @case('image')
+                @if (!empty($wire))
+                    <div class="image {{ $class }}">
+                        <div class="image__preview {{ !empty($this->{$wire}) ? 'has-image' : 'is-empty' }}">
+                            @php
+                                $file = $this->{$wire} ?? null;
+
+                                if (is_array($file)) {
+                                    $file = $file[0] ?? null;
+                                }
+                            @endphp
+
+                            @if ($file && method_exists($file, 'temporaryUrl'))
+                                <img
+                                    src="{{ $file->temporaryUrl() }}"
+                                    alt="Preview"
+                                    class="image__value"
+                                >
+                            @elseif (is_string($file))
+                                <img
+                                    src="{{ asset('storage/'.$file) }}"
+                                    alt="Preview"
+                                    class="image__value"
+                                >
+                            @else
+                                <small class="image__empty">
+                                    <i class="fa-regular fa-image"></i>
+                                </small>
+                            @endif
+                        </div>
+                        <input
+                            type="file"
+                            id="{{ $id }}"
+                            name="{{ $name }}"
+                            wire:model.live="{{ $wire }}"
+                            accept="image/*"
+                            @required($required)
+                            class="image__input @error($name) error @enderror"
+                            {{ $attributes }}
+                        >
+                    </div>
+                @else
+                    <div class="image">
+                        <div class="image__preview {{ $value ? 'has-image' : 'is-empty' }}">
+                            <img
+                                src="{{ $value ? asset('storage/'.$value) : '' }}"
+                                alt="Preview"
+                                class="image__value"
+                            >
+                            <small class="image__empty">
+                                <i class="fa-regular fa-image"></i>
+                            </small>
+                        </div>
+                
+                        <input
+                            type="file"
+                            id="{{ $id }}"
+                            name="{{ $name }}"
+                            accept="image/*"
+                            data-image-preview
+                            @required($required)
+                            class="image__input @error($name) error @enderror"
+                            {{ $attributes }}
+                        >
+                    </div>
+                @endif
+                @break
             @default
                 <input
                     class="{{ $errors->has($name) ? 'error' : '' }}"

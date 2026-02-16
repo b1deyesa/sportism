@@ -5,10 +5,14 @@ namespace App\Livewire\Superadmin\Club;
 use App\Models\Club;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+    use WithFileUploads;
+    
     public $name;
+    public $logo;
     
     public function save()
     {
@@ -21,9 +25,12 @@ class Create extends Component
             'name' => 'required'
         ]);
         
+        $logo = $this->logo ? $this->logo->store('club', 'public') : null;
+        
         Club::create([
             'name' => $this->name,
-            'slug' => Str::slug($this->name)
+            'slug' => Str::slug($this->name),
+            'logo' => $logo
         ]);
         
         return redirect()->route('superadmin.club.index')->with('success', 'Success Update');

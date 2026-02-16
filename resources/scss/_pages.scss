@@ -514,6 +514,23 @@ body {
                     min-height: 8em;
                 }
             }
+            
+            .regist__form {
+                
+                .form__row {
+                    gap: 1.5em;
+                }
+                
+                .input:has(.image) {
+                    width: fit-content;
+                    
+                    .image {
+                        aspect-ratio: 3/4;
+                        width: fit-content;
+                        height: 11em;
+                    }
+                }
+            }
         }
     }
 /*
@@ -1382,6 +1399,55 @@ body {
                                 color: rgba($color-white, 80%);
                             }
                         }
+                    }
+                }
+            }
+        }
+        
+        > .modal {
+            
+            .event__form {
+                
+                .image {
+                    height: 8.3em;
+                }
+            }
+            
+            .club__form {
+                
+                .input:has(.image) {
+                    width: fit-content;
+                    
+                    .image {
+                        aspect-ratio: 1/1;
+                        width: fit-content;
+                        height: 8.3em;
+                    }
+                }
+            }
+            
+            .team__form {
+                
+                .input:has(.image) {
+                    width: fit-content;
+                    
+                    .image {
+                        aspect-ratio: 1/1;
+                        width: fit-content;
+                        height: 8.3em;
+                    }
+                }
+            }
+            
+            .player__form {
+                
+                .input:has(.image) {
+                    width: fit-content;
+                    
+                    .image {
+                        aspect-ratio: 1/1;
+                        width: fit-content;
+                        height: 8.3em;
                     }
                 }
             }

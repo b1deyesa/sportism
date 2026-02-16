@@ -5,7 +5,7 @@
         @forelse ($events as $event)
             <div class="list__item" data-id="{{ $event->id }}" wire:key="event-{{ $event->id }}">
                 <div class="item__left">
-                    <img src="{{ asset('assets/img/default.png') }}" alt="Cover" class="item__cover">
+                    <img src="{{ asset($event->cover ? 'storage/'. $event->cover : 'assets/img/default.png') }}" alt="Cover" class="item__cover">
                     <div class="item__text">
                         <h4 class="item__title">{{ $event->name }}</h4>
                         <div class="item__bottom">

@@ -11,13 +11,15 @@ class Read extends Component
 {
     public Event $event;
     public $categories;
+    public $teams;
     public $selected_category;
     public $selected_team;
-    public $name;
+    public $team_id;
     
     public function mount()
     {
         $this->categories = Event::find($this->event->id)->categories;
+        $this->teams = Team::orderBy('name', 'asc')->pluck('name', 'id')->toJson();
         
         if ($this->categories->isNotEmpty()) {
             $this->selected_category = $this->categories->first()->id;
@@ -61,13 +63,13 @@ class Read extends Component
     public function saveTeam()
     {
         $this->validate([
-            'name' => 'required'
+            'team_id' => 'required'
         ]);
         
-        $team = Team::where('slug', Str::slug($this->name))?->first();
+        $team = Team::find($this->team_id);
         
         if (!$team) {
-            $this->addError('name', "Team doesn't exists.");
+            $this->addError('team_id', "Team doesn't exists.");
             return;
         }
         

@@ -5,11 +5,15 @@ namespace App\Livewire\Superadmin\Player;
 use App\Models\Player;
 use App\Models\Team;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+    use WithFileUploads;
+    
     public Team $team;
     public $name;
+    public $avatar;
     
     public function save()
     {
@@ -17,8 +21,12 @@ class Create extends Component
             'name' => 'required'
         ]);
         
+        $avatar = $this->avatar ? $this->avatar->store('player', 'public') : null;
+        
         $player = Player::firstOrCreate([
             'name' => $this->name
+        ],[
+            'avatar' => $avatar
         ]);
         
         $player->teams()->syncWithoutDetaching([$this->team->id]);

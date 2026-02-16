@@ -9,11 +9,12 @@
  */
     .modal {
         position: fixed;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: grid;
+        place-items: center;
         inset: 0;   
+        padding: 2em;
         z-index: 1000;
+        overflow-y: auto;
         backdrop-filter: blur(4px);
         background: rgba($color-black, 90%);
         
@@ -23,7 +24,7 @@
             flex-direction: column;
             min-height: 5em;
             width: 100%;
-            max-width: 30em;
+            max-width: 35em;
             padding: 2em;
             border-radius: .8em;
             background: lighten($color-dark, 5%);
@@ -64,12 +65,20 @@
         .form__row {
             display: flex;
             gap: inherit;
+            height: 100%;
+            width: 100%;
         }
         
         .form__column {
             display: flex;
             flex-direction: column;
+            width: 100%;
             gap: inherit;
+        }
+        
+        .form__separator {
+            width: 100%;
+            border: .8px solid rgba($color-white, 5%);
         }
         
         .form__buttons {
@@ -194,6 +203,73 @@
                     gap: .4em;
                     cursor: pointer;
                     color: rgba($color-white, 80%);
+                }
+            }
+            
+            > .image {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                height: 100%;;
+                cursor: pointer;
+                
+                &::after {
+                    content: 'Choose File';
+                    position: absolute;
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: .9em;
+                    text-align: center;
+                    inset: 0;
+                    background: rgba($color-black, 50%);
+                    color: rgba($color-white, 80%);
+                }
+                
+                &:hover::after {
+                    display: flex;
+                    pointer-events: none;
+                }
+                
+                .image__input {
+                    position: absolute;
+                    inset: 0;
+                    height: 100%;
+                    opacity: 0%;
+                    cursor: pointer;
+                }
+                
+                .image__preview {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100%;
+                    width: 100%;
+                    padding: .5em;
+                    border-radius: .4em;
+                    border: 1px dashed rgba($color-white, 20%);
+                    background: rgba($color-light, 5%);
+                    
+                    &.is-empty .image__value {
+                        display: none;
+                    }
+                    
+                    &.has-image .image__empty {
+                        display: none;
+                    }
+                    
+                    .image__value {
+                        display: flex;
+                        object-fit: cover;
+                        height: 100%;
+                        width: 100%;
+                    }
+                    
+                    .image__empty {
+                        font-size: 3em;
+                        opacity: 20%;
+                    }
                 }
             }
         }

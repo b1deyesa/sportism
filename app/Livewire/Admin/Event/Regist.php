@@ -8,13 +8,17 @@ use App\Models\Event;
 use App\Models\Team;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Regist extends Component
 {
+    use WithFileUploads;
+    
     public Event $event;
     public $categories;
     public $clubs;
     public $name;
+    public $logo;
     public $category;
     public $club;
     
@@ -32,18 +36,24 @@ class Regist extends Component
         ]);
         
         $category = Category::find($this->category);
-        $club = Category::firstOrCreate(
+        
+        $logo = $this->logo ? $this->logo->store('team', 'public') : null;
+        
+        $club = Club::firstOrCreate(
             ['id' => $this->club],
             [
                 'name' => $this->name,
-                'slug' => Str::slug($this->name)
+                'slug' => Str::slug($this->name),
+                'logo' => $logo
             ]
         );
+        
         $team = Team::firstOrCreate(
             ['slug' => Str::slug($this->name)],
             [
                 'club_id' => $club->id,
-                'name' => $this->name
+                'name' => $this->name,
+                'logo' => $logo
             ]
         );
         
