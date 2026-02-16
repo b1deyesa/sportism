@@ -22,7 +22,7 @@
                         @foreach ($events as $event)
                             <li class="splide__slide">
                                 <span class="item__status">{{ $event->status }}</span>
-                                <img src="{{ asset('assets/img/default.png') }}" alt="Event Cover" class="item__cover">
+                                <img src="{{ asset($event->cover ? 'storage/'. $event->cover : 'assets/img/default.png') }}" alt="Event Cover" class="item__cover">
                                 <div class="item__bottom">
                                     <h3 class="item__title">{{ $event->name }}</h3>
                                     <div class="item__date">
