@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <title>{{ env('APP_NAME') }}</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel="shortcut icon" href="{{ asset('assets/img/sportism-logo-round.png') }}" type="image/x-icon"> 
     
     {{-- Style --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
