@@ -179,6 +179,10 @@
                 select {
                     @extend %input;
                     -webkit-appearance: none;
+                    
+                    option {
+                        color: black;
+                    }
                 }
                 
                 .fa-angle-down {
@@ -270,6 +274,57 @@
                         font-size: 3em;
                         opacity: 20%;
                     }
+                }
+            }
+            
+            > .editor {
+
+                * {
+                    font-family: $font-family-1 !important;
+                }
+                
+                .cke_toolgroup a.cke_button:last-child:after, .cke_toolgroup a.cke_button.cke_button_disabled:hover:last-child:after,
+                .cke_toolbar_separator {
+                    border-color: rgba($color-light, 20%) !important;
+                    background: rgba($color-light, 20%);
+                }
+                
+                .cke_button {
+                    height: fit-content;
+                    border-color: #111;
+                    border-radius: .4em;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        background: rgba($color-light, 20%);
+                    }
+                    
+                    &.cke_button_on {
+                        background: rgba($color-light, 40%);
+                    }
+                }
+                
+                /* Mengubah warna border luar editor */
+                .cke_chrome {
+                    border: 1px solid #222 !important;
+                    border-radius: 8px;
+                    overflow: hidden;
+                }
+
+                /* Mengubah warna header/toolbar */
+                .cke_top {
+                    background: #111 !important;
+                    border-bottom: 1px solid transparent !important;
+                }
+
+                /* Mengubah warna footer */
+                .cke_bottom {
+                    background: #111 !important;
+                    border-top: 1px solid transparent !important;
+                }
+                
+                .cke_button_icon {
+                    filter: brightness(0) saturate(0%) invert(48%) sepia(74%) saturate(0%) hue-rotate(190deg) brightness(110%) contrast(92%);
                 }
             }
         }

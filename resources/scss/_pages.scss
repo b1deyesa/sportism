@@ -286,6 +286,297 @@ body {
                     }
                 }
             }
+            
+            &.event {
+                
+                &.show {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 4em;
+                    min-height: 40em;
+                    padding: 6em 2em;
+                    
+                    section.banner {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        
+                        .banner__container {
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            gap: .5em;
+                            min-height: 15em;
+                            width: 100%;
+                            max-width: 1000px;
+                            padding: 2em 4em;
+                            overflow: hidden;
+                            border-radius: .8em;
+                            
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                inset: 0;
+                                background: linear-gradient(90deg, rgba($color-black, 60%), rgba($color-black, 20%));
+                                z-index: -1;
+                            }
+                            
+                            .banner__background {
+                                position: absolute;
+                                object-fit: cover;
+                                inset: 0;
+                                height: 100%;
+                                width: 100%;
+                                z-index: -2;
+                            }
+                            
+                            .banner__title {
+                                font-size: 1.5em;
+                                color: rgba($color-white, 80%);
+                            }
+                            
+                            .banner__subtitle {
+                                font-size: 2em;
+                                font-weight: 700;
+                                color: $color-white;
+                            }
+                        }
+                    }
+                    
+                    section.info {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        
+                        .info__container {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1em;
+                            width: 100%;
+                            max-width: 1000px;
+                            
+                            .info__title {
+                                @extend %header-3;
+                            }
+                        }
+                    }
+                    
+                    section.category {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        
+                        .category__container {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 2em;
+                            width: 100%;
+                            max-width: 1000px;
+                            
+                            .category__header {
+                                display: flex;
+                                align-items: center;
+                                gap: 1em;
+                                
+                                .header__title {
+                                    @extend %header-1;
+                                }
+                                
+                                .category__create__trigger {
+                                    @include button(outline, $icon: true);
+                                }
+                            }
+                            
+                            .category__read {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 1em;
+                                height: 100%;
+                                
+                                .category__list {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 1em;
+                                    
+                                    .list__item {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        min-height: 2em;
+                                        width: 10em;
+                                        padding: .8em 1em;
+                                        cursor: pointer;
+                                        border-radius: .4em;
+                                        background: rgba($color-white, 2%);
+                                        border: 1px solid rgba($color-white, 10%);
+                                        color: $color-light;
+                                        
+                                        &.active {
+                                            background: rgba($color-white, 10%);
+                                            border: 1px solid rgba($color-white, 20%);
+                                            color: rgba($color-white, 80%);
+                                        }
+                                    }
+                                }
+                                
+                                .category__team {
+                                    display: flex;
+                                    gap: 2em;
+                                    height: 100%;
+                                    
+                                    .team__list {
+                                        display: grid;
+                                        grid-template-columns: repeat(5, 1fr);
+                                        gap: 1em;
+                                        height: 100%;
+                                        width: 100%;
+                                        min-width: 50em;
+                                        padding: 1em;
+                                        border-radius: .8em;
+                                        background: rgba($color-white, 2%);
+                                        border: 1px solid rgba($color-white, 10%);
+            
+                                        .list__item {
+                                            position: relative;
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            justify-content: center;
+                                            text-decoration: none;
+                                            gap: 1em;
+                                            height: 9em;
+                                            width: auto;
+                                            min-width: 0; 
+                                            padding: .6em;
+                                            cursor: pointer;
+                                            border-radius: .6em;
+                                            border: 1px solid transparent;
+                                            background: darken($color-dark, 2%);
+                                            
+                                            &.active {
+                                                background: rgba($color-white, 10%);
+                                                border: 1px solid rgba($color-white, 20%);
+                                                color: rgba($color-white, 80%);
+                                            }
+                                            
+                                            .item__logo {
+                                                width: fit-content;
+                                                max-width: 100%;
+                                                max-height: 4em;
+                                            }
+                                            
+                                            .item__title {
+                                                font-size: 1em;
+                                                line-height: 1.4;
+                                                font-weight: 500;
+                                                text-align: center;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
+                                                max-width: 6em;
+                                                overflow: hidden;
+                                                color: rgba($color-white, 80%);
+                                            }
+                                            
+                                            .team__remove__trigger {
+                                                position: absolute;
+                                                top: .5em;
+                                                right: .5em;
+                                            }
+                                        }
+                                        
+                                        .team__create__trigger {
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            justify-content: center;
+                                            gap: 1em;
+                                            min-height: 9em;
+                                            width: 100%;
+                                            cursor: pointer;
+                                            border-radius: .4em;
+                                            border: 1px dashed rgba($color-white, 10%);
+                                            background: rgba($color-white, 2%);
+                                            
+                                            i {
+                                                font-size: 2em;
+                                            }
+                                        }
+                                    }
+                                    
+                                    .team__separator {
+                                        margin: 0;
+                                        border: 1px solid rgba($color-white, 5%);
+                                    }
+                                    
+                                    .team__info {
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: 1.5em;
+                                        width: 100%;
+                                        
+                                        .info__title {
+                                            @extend %header-3;
+                                        }
+                                        
+                                        .info__player {
+                                            display: flex;
+                                            flex-direction: column;
+                                            gap: 1em;
+                                            
+                                            .player__header {
+                                                display: flex;
+                                                align-items: center;
+                                                gap: 1em;
+                                                
+                                                .header__title {
+                                                    @extend %header-4;
+                                                }
+                                                
+                                                .player__create__trigger {
+                                                    @include button(outline, $icon: true);
+                                                    min-height: fit-content;
+                                                    padding: .5em;
+                                                }
+                                            }
+                                            
+                                            .player__list {
+                                                display: grid;
+                                                grid-template-columns: repeat(4, 1fr);
+                                                gap: 1em;
+                                                
+                                                .list__item {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    gap: .5em;
+                                                    
+                                                    .item__avatar {
+                                                        aspect-ratio: 1/1;
+                                                        height: 3em;
+                                                        width: fit-content;
+                                                        border-radius: 50%;
+                                                    }
+                                                    
+                                                    .item__title {
+                                                        font-size: .8em;
+                                                        text-align: center;
+                                                        text-overflow: ellipsis;
+                                                        white-space: nowrap;
+                                                        max-width: 5em;
+                                                        overflow: hidden;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         
         .guest__footer {
@@ -592,8 +883,10 @@ body {
             display: flex;
             flex-direction: column;
             gap: 3em;
+            height: 100vh;
             width: 100%;
             padding: 3em;
+            overflow-y: auto;
             
             &.event {
                 
@@ -751,6 +1044,14 @@ body {
                         }
                     }
                     
+                    .event__detail {
+                        gap: 2em;
+                        
+                        .form__row {
+                            gap: 2.5em;
+                        }
+                    }
+                    
                     .event__category {
                         display: flex;
                         flex-direction: column;
@@ -821,6 +1122,7 @@ body {
                                     border: 1px solid rgba($color-white, 10%);
         
                                     .list__item {
+                                        position: relative;
                                         display: flex;
                                         flex-direction: column;
                                         align-items: center;
@@ -858,6 +1160,12 @@ body {
                                             max-width: 6em;
                                             overflow: hidden;
                                             color: rgba($color-white, 80%);
+                                        }
+                                        
+                                        .team__remove__trigger {
+                                            position: absolute;
+                                            top: .5em;
+                                            right: .5em;
                                         }
                                     }
                                     
@@ -1350,6 +1658,24 @@ body {
                                                     aspect-ratio: 1/1;
                                                     width: 3em;
                                                     border-radius: 50%;
+                                                }
+                                            }
+                                            
+                                            .item__right {
+                                                display: flex;
+                                                align-items: center;
+                                                gap: .5em;
+                                                
+                                                .player__edit__trigger {
+                                                    @include button(outline, $icon: true);
+                                                    min-height: 2.2em;
+                                                    padding: .5em;
+                                                }
+                                                
+                                                .player__delete__trigger {
+                                                    @include button(outline, $icon: true);
+                                                    min-height: 2.2em;
+                                                    padding: .5em;
                                                 }
                                             }
                                         }

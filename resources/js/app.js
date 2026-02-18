@@ -3,6 +3,26 @@ import Splide from '@splidejs/splide';
 
 // Input Search
 
+const splide = new Splide('#event__splide', {
+  type: 'slide',
+  perPage: 3,
+  perMove: 1,
+  gap: '1.5rem',
+  rewind: false,
+  arrows: true,
+  pagination: false,
+  breakpoints: {
+      1024: {
+        perPage: 2,
+      },
+      640: {
+        perPage: 1,
+        arrows: false
+      }
+    }
+}).mount();
+
+
 $(document).on('input focus', '.search input[type="search"]', function () {
     const wrap = $(this).closest('.search');
     const hasValue = $(this).val().length > 0;
@@ -26,23 +46,3 @@ $(document).on('click', '.search .fa-xmark', function () {
 
     input.val('').trigger('input').focus();
 });
-
-
-const splide = new Splide('#event__splide', {
-    type: 'slide',
-    perPage: 3,
-    perMove: 1,
-    gap: '1.5rem',
-    rewind: false,
-    arrows: true,
-    pagination: false,
-    breakpoints: {
-        1024: {
-          perPage: 2,
-        },
-        640: {
-          perPage: 1,
-          arrows: false
-        }
-      }
-}).mount();

@@ -7,6 +7,12 @@
         <h2 class="header__subtitle">{{ $event->name }}</h2>
     </div>
     
+    {{-- Detail --}}
+    <div class="event__detail">
+        @livewire('superadmin.event.detail', compact('event'))
+        
+    </div>
+    
     {{-- Category --}}
     <div class="event__category">
         <div class="category__header">

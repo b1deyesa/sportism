@@ -17,18 +17,33 @@
                     <span class="list__item{{ $selected_team == $team->id ? ' active' : '' }}" wire:click="selectTeam({{ $team->id }})">
                         <img src="{{ asset($team->logo ? 'storage/'. $team->logo : 'assets/img/default-logo.png') }}" alt="Team Logo" class="item__logo">
                         <h3 class="item__title">{{ $team->name }}</h3>
+                        <x-modal class="team__remove" :close="false">
+                            <x-slot:trigger><i class="fa-solid fa-xmark"></i></x-slot:trigger>
+                            <span class="team">
+                                <p class="team__text">Are you sure to remove this team?</p>
+                                <x-form wire:submit="removeTeam({{ $team->id }})">
+                                    <div class="form__buttons">
+                                        <x-button class="button__close" x-on:click="open = false">Close</x-button>
+                                        <x-button type="submit" class="button__submit">Remove</x-button>
+                                    </div>
+                                </x-form>
+                                
+                            </span>
+                        </x-modal>
                     </span>
                 @endforeach
-                <x-modal class="team__create" :close="false">
-                    <x-slot:trigger><i class="fa-solid fa-plus"></i></x-slot:trigger>
-                    <x-form class="team__form" wire:submit="saveTeam">
-                        <x-input label="Team Name" type="select" wire="team_id" placeholder="Select" :options="$teams" />
-                        <div class="form__buttons">
-                            <x-button class="button__close" x-on:click="open = false">Close</x-button>
-                            <x-button type="submit">Save</x-button>
-                        </div>
-                    </x-form>
-                </x-modal>
+                @auth
+                    <x-modal class="team__create" :close="false">
+                        <x-slot:trigger><i class="fa-solid fa-plus"></i></x-slot:trigger>
+                        <x-form class="team__form" wire:submit="addTeam">
+                            <x-input label="Team Name" type="select" wire="team_id" placeholder="Select" :options="$teams" />
+                            <div class="form__buttons">
+                                <x-button class="button__close" x-on:click="open = false">Close</x-button>
+                                <x-button type="submit">Save</x-button>
+                            </div>
+                        </x-form>
+                    </x-modal>
+                @endauth
             @endif
         </div>
         

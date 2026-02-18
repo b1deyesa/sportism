@@ -13,7 +13,7 @@
         border-radius: .4em;
         outline: none;
         background: rgba($color-white, 5%);
-        border: 1px solid transparent;
+        border: 1px solid rgba($color-white, 5%);
         color: $color-white;
         
         &:focus {
@@ -87,4 +87,14 @@
         font-weight: 600;
         line-height: 1.4;
         color: $color-white;
+    }
+/*
+ |-----------------------------------------------
+ |  Text
+ |-----------------------------------------------
+ */
+    %text {
+        font-size: 1em;
+        line-height: 1.6;
+        color: $color-light;
     }

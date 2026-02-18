@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('cover')->nullable();
             $table->text('description')->nullable();
+            $table->text('location')->nullable();
+            $table->text('payment_info')->nullable();
             $table->enum('status', ['open', 'on going', 'coming soon', 'end'])->default('coming soon');
             $table->date('date_start');
             $table->date('date_end');

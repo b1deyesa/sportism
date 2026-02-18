@@ -24,6 +24,7 @@ class Input extends Component
         public $autofocus = false,
         public $options = false,
         public $wire = null,
+        public $toolbar = 'basic'
     )
     {
         $this->class = $class ? " $class" : null;
@@ -34,6 +35,7 @@ class Input extends Component
         $this->id = $id ?: $this->name;
         $this->value = $value;
         $this->placeholder = $placeholder;
+        $this->toolbar = $toolbar;
         $this->autocomplete = $autocomplete;
         $this->autofocus = $autofocus;
         $this->options = is_string($options) && $options !== [] ? json_decode($options, true) : ($options ?? []);
@@ -41,6 +43,7 @@ class Input extends Component
         if ($wire) {
             $this->wire = $wire;
             $this->name = $name ?: $this->wire;
+            $this->id = $id ?: $this->name;
         }
     }
 

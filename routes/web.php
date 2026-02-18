@@ -12,6 +12,11 @@ Route::namespace('App\Http\Controllers')->group(function() {
                 'events' => Event::orderBy('order')->get()
             ]);
         })->name('index');
+        Route::get('/event/{event:slug}', function(Event $event) {
+            return view('guest.event.show', [
+                'event' => $event
+            ]);
+        })->name('event.show');
     });
     
     // Superadmin

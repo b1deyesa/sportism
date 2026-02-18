@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Superadmin\Category;
 
+use App\Models\Category;
 use App\Models\Event;
 use App\Models\Team;
 use Illuminate\Support\Str;
@@ -60,7 +61,7 @@ class Read extends Component
         return $this->category->teams->where('id', $this->selected_team)->first();
     }
     
-    public function saveTeam()
+    public function addTeam()
     {
         $this->validate([
             'team_id' => 'required'
@@ -78,6 +79,12 @@ class Read extends Component
         
         $this->dispatch('modal-close');
         return back()->with('success', 'Success Update');
+    }
+    
+    public function removeTeam($teamId)
+    {
+        $category = $this->event->categories()->findOrFail($this->selected_category);
+        $category->teams()->detach($teamId);
     }
     
     public function render()

@@ -64,6 +64,37 @@
                     @endforeach
                 </div>
                 @break
+            @case('editor')
+                <div class="editor" wire:ignore> {{-- 1. Tambahkan wire:ignore di sini --}}
+                    <textarea  
+                        id="editor-{{ $id }}" 
+                        class="editor-input"
+                        name="{{ $name }}"
+                        @if($wire) wire:model="{{ $wire }}" @endif
+                        data-toolbar="{{ $toolbar }}"
+                        >{!! old($name, $value) !!}</textarea>
+                </div>
+                
+                <script>
+                    var editor{{ $id }} = CKEDITOR.replace('editor-{{ $id }}', {
+                        versionCheck: false,
+                        toolbar: [
+                            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
+                            { name: 'paragraph', items: [ 'NumberedList', 'BulletedList' ] },
+                            { name: 'links', items: [ 'Link', 'Unlink' ] },
+                        ],
+                        contentsCss: [
+                            'body { background-color: #0a0a0a; color: #AAA; }'
+                        ],
+                        height: 100,
+                    });
+
+                    editor{{ $id }}.on('change', function() {
+                        let data = editor{{ $id }}.getData();
+                        @this.set('{{ $wire }}', data);
+                    });
+                </script>
+                @break
             @case('image')
                 @if (!empty($wire))
                     <div class="image {{ $class }}">

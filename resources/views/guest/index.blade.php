@@ -40,7 +40,7 @@
                                                 @livewire('guest.login')
                                             @endguest
                                         </x-modal>
-                                        <x-button type="link" href="" class="item__button__detail"><i class="fa-solid fa-eye"></i></x-button>
+                                        <x-button type="link" href="{{ route('guest.event.show', compact('event')) }}" class="item__button__detail"><i class="fa-solid fa-eye"></i></x-button>
                                     </div>
                                 </div>
                             </li>
