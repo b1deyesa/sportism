@@ -13,7 +13,7 @@
         <div class="info__container">
             <p class="info__text">{!! $event->description ?? '-' !!}</p>
             <h3 class="info__title">Location</h3>
-            <p class="info__text">{{ $event->location ?? '-' }}</p>
+            <iframe src="{{ $event->location }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <h3 class="info__title">Payment Information</h3>
             <p class="info__text">{!! $event->payemnt_info ?? '-' !!}</p>
         </div>
