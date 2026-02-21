@@ -44,7 +44,6 @@ class Edit extends Component
             'date_end' => 'required'
         ]);
         
-        
         if ($this->event->cover !== $this->cover) {
             $cover = $this->cover->store('event', 'public');
         }
@@ -52,7 +51,7 @@ class Edit extends Component
         $this->event->update([
             'entered_by' => Auth::user()->id,
             'name' => $this->name,
-            'cover' => $cover ?: $this->cover,
+            'cover' => $cover ?? $this->cover,
             'status' => $this->status,
             'date_start' => $this->date_start,
             'date_end' => $this->date_end
