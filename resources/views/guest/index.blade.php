@@ -20,7 +20,7 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         @foreach ($events as $event)
-                            <a href="{{ route('guest.event.show', compact('event')) }}" class="splide__slide">
+                            <li class="splide__slide">
                                 <span class="item__status">{{ $event->status }}</span>
                                 <img src="{{ asset($event->cover ? 'storage/'. $event->cover : 'assets/img/default.png') }}" alt="Event Cover" class="item__cover">
                                 <div class="item__bottom">
@@ -43,7 +43,7 @@
                                         <x-button type="link" href="{{ route('guest.event.show', compact('event')) }}" class="item__button__detail"><i class="fa-solid fa-eye"></i></x-button>
                                     </div>
                                 </div>
-                            </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
