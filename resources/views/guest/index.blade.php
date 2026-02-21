@@ -31,7 +31,7 @@
                                         <span class="date__end">{{ format_date($event->date_end) }}</span>
                                     </div>
                                     <div class="item__buttons">
-                                        <x-modal class="item__button__regist" :close="false">
+                                        <x-modal class="item__button__regist" :close="true">
                                             <x-slot:trigger>Regist</x-slot:trigger>
                                             @auth
                                                 @livewire('admin.event.regist', compact('event'))
